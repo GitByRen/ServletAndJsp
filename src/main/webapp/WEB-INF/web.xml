@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5"/>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<!-- 配置和映射servlet -->
+	<servlet>
+		<servlet-name>helloServlet</servlet-name>
+		<servlet-class>com.important.day1.HelloServlet</servlet-class>
+		<!-- 
+			指定servlet被创建的时机.若为负数，则在第一次请求时创建。若为0或者正数，则在当前WEB应用被Servlet容器加载时创建实例，
+			数值越小越早被创建
+		 -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>helloServlet</servlet-name>
+		<!-- /代表WEB应用的根目录，可以用*.扩展名或/*, 既带/又带扩展名的不合法 -->
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+</web-app>
