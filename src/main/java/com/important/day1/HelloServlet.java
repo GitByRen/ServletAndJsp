@@ -1,6 +1,7 @@
 package com.important.day1;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -40,9 +41,22 @@ public class HelloServlet implements Servlet {
 		return null;
 	}
 
+	/**
+	 * ServletConfig：封装了Servlet的配置信息，并且可以获取ServletContext对象
+	 * getInitParameter(String name)：获取指定参数名的初始化参数
+	 * getInitParameterNames()：获取参数名组成的Enumeration对象
+	 */
 	@Override
-	public void init(ServletConfig arg0) throws ServletException {
+	public void init(ServletConfig servletConfig) throws ServletException {
 		System.out.println("init");
+		String initParameter = servletConfig.getInitParameter("user");
+		System.out.println("user:" + initParameter);
+		Enumeration<String> names = servletConfig.getInitParameterNames();
+		while (names.hasMoreElements()) {
+			String name = names.nextElement();
+			String value = servletConfig.getInitParameter(name);
+			System.out.println("name:" + name + ",value:" + value);
+		}
 	}
 
 	@Override
