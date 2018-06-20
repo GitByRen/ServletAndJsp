@@ -3,6 +3,17 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
+	
+	<!-- 设置初始化参数，可以为所有的servlet所获取 -->
+	<context-param>
+		<param-name>driver</param-name>
+		<param-value>com.mysql.jdbc.Driver</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>jdbcUrl</param-name>
+		<param-value>jdbc:mysql:///atguigu</param-value>
+	</context-param>
 
 	<!-- 配置和映射servlet -->
 	<servlet>
@@ -14,7 +25,7 @@
 		 -->
 <!-- 		<load-on-startup>1</load-on-startup> -->
 		
-		<!-- 配置Servlet的初始化参数 -->
+		<!-- 配置Servlet的初始化参数，只有当前Servlet可以获取 -->
 		<init-param>
 			<!-- 参数名 -->
 			<param-name>user</param-name>
