@@ -1,0 +1,5 @@
+1.Servlet的配置及生命周期
+2.ServletConfig,ServlerContext,GET和POST
+3.ServletRequest,ServletResponse
+4.GenericServlet,HttpServlet
+5.JSP的9个内置对象

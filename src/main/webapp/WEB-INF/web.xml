@@ -43,5 +43,30 @@
 		<!-- /代表WEB应用的根目录，可以用*.扩展名或/*, 既带/又带扩展名的不合法 -->
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.important.day2.LoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- 配置一个jsp映射 -->
+	<servlet>
+		<servlet-name>hellojsp</servlet-name>
+		<jsp-file>/hello.jsp</jsp-file>
+		<init-param>
+			<param-name>test</param-name>
+			<param-value>testValue</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>hellojsp</servlet-name>
+		<url-pattern>/hellojsp</url-pattern>
+	</servlet-mapping>
 
 </web-app>

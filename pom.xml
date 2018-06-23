@@ -9,6 +9,7 @@
 
 	<properties>
 		<com.important.servlet>4.0.0</com.important.servlet>
+		<com.important.jsp>2.0</com.important.jsp>
 	</properties>
 
 	<dependencies>
@@ -16,6 +17,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${com.important.servlet}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${com.important.jsp}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
