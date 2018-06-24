@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %> <!-- errorPage="/WEB-INF/error.jsp" -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +8,15 @@
 </head>
 <body>
 
+	<!-- JSP指令 -->
+	<!-- 1.session="true|false" errorPage="relative_url" isErrorPage="true|false"-->
+	<!-- 2.contentType：指定当前JSP页面的响应类型,实际调用的是response.setContentType("text/html; charset=UTF-8") -->
+	<!-- 3.pageEncoding：指定当前JSP页面的字符编码 -->
+	<%
+		/* 在响应error.jsp时,jsp引擎使用的是转发的方式 */
+		int i = 10/0;
+	%>
+	
 	<!-- 
 		JSP九大内置对象:即未声明就可以使用的对象
 		request,response,pageContext,session,application,config,out,page,exception

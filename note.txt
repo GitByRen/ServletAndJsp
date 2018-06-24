@@ -3,3 +3,7 @@
 3.ServletRequest,ServletResponse
 4.GenericServlet,HttpServlet
 5.JSP的9个内置对象
+6.jsp指令(page,include,taglib),jsp表达式,jsp标签(静态跳转动态跳转,静态包含动态包含)
+7.pageContext,request,session,application作用域
+8.转发和重定向
+9.中文乱码问题

@@ -3,33 +3,21 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	
-	<!-- 设置初始化参数，可以为所有的servlet所获取 -->
+
 	<context-param>
 		<param-name>driver</param-name>
 		<param-value>com.mysql.jdbc.Driver</param-value>
 	</context-param>
-
 	<context-param>
 		<param-name>jdbcUrl</param-name>
 		<param-value>jdbc:mysql:///atguigu</param-value>
 	</context-param>
 
-	<!-- 配置和映射servlet -->
 	<servlet>
 		<servlet-name>helloServlet</servlet-name>
 		<servlet-class>com.important.day1.HelloServlet</servlet-class>
-		<!-- 
-			指定servlet被创建的时机.若为负数，则在第一次请求时创建。若为0或者正数，则在当前WEB应用被Servlet容器加载时创建实例，
-			数值越小越早被创建
-		 -->
-<!-- 		<load-on-startup>1</load-on-startup> -->
-		
-		<!-- 配置Servlet的初始化参数，只有当前Servlet可以获取 -->
 		<init-param>
-			<!-- 参数名 -->
 			<param-name>user</param-name>
-			<!-- 参数值 -->
 			<param-value>root</param-value>
 		</init-param>
 		<init-param>
@@ -37,10 +25,8 @@
 			<param-value>1230</param-value>
 		</init-param>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>helloServlet</servlet-name>
-		<!-- /代表WEB应用的根目录，可以用*.扩展名或/*, 既带/又带扩展名的不合法 -->
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
 	
@@ -48,14 +34,11 @@
 		<servlet-name>loginServlet</servlet-name>
 		<servlet-class>com.important.day2.LoginServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
 		<url-pattern>/loginServlet</url-pattern>
 	</servlet-mapping>
 	
-	
-	<!-- 配置一个jsp映射 -->
 	<servlet>
 		<servlet-name>hellojsp</servlet-name>
 		<jsp-file>/hello.jsp</jsp-file>
@@ -68,5 +51,36 @@
 		<servlet-name>hellojsp</servlet-name>
 		<url-pattern>/hellojsp</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>ForwardServlet</servlet-name>
+		<servlet-class>com.important.day3.ForwardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardServlet</servlet-name>
+		<url-pattern>/forwardServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>com.important.day3.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/testServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RedirectServlet</servlet-name>
+		<servlet-class>com.important.day3.RedirectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RedirectServlet</servlet-name>
+		<url-pattern>/redirectServlet</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/error.jsp</location>
+	</error-page>
 </web-app>
