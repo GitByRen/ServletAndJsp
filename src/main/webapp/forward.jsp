@@ -12,9 +12,9 @@
 	
 	<br>
 	<!-- 测试中文乱码 -->
-	<%-- 
+	 
  	<jsp:forward page="/WEB-INF/ChineseCode/a.jsp"></jsp:forward>
- 	--%>
+ 	
 	
 	<!-- 动态跳转 -->
 	<%--

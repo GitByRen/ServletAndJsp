@@ -20,10 +20,13 @@
 	
 	<br>
 	
-	<!-- 对于GET请求，也可以修改tomcat的server.xml文件,connector添加useBodyEncodingForURI="true" -->
+	<!-- 
+		对于GET请求，也可以修改tomcat的server.xml文件,connector添加useBodyEncodingForURI="true"
+		注意：tomcat8.0开始，URIEncoding默认值不再是ISO8859-1，而变成了UTF-8，所以不需要特殊处理GET请求了。
+	 -->
 	<%
-		String val = request.getParameter("username");
-		String username = new String(val.getBytes("ISO-8859-1"),"UTF-8");
+		String username = request.getParameter("username");
+		/* String username = new String(val.getBytes("ISO-8859-1"),"UTF-8"); */
 		out.println(username);
 	%>
 	
