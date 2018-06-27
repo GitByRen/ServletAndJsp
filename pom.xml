@@ -10,6 +10,9 @@
 	<properties>
 		<com.important.servlet>4.0.0</com.important.servlet>
 		<com.important.jsp>2.0</com.important.jsp>
+		<com.important.mysql>5.1.46</com.important.mysql>
+		<com.important.c3p0>0.9.5.2</com.important.c3p0>
+		<com.important.dbutils>1.7</com.important.dbutils>
 	</properties>
 
 	<dependencies>
@@ -24,6 +27,21 @@
 			<artifactId>jsp-api</artifactId>
 			<version>${com.important.jsp}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${com.important.mysql}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${com.important.c3p0}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+			<version>${com.important.dbutils}</version>
 		</dependency>
 	</dependencies>
 </project>
