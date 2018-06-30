@@ -7,3 +7,13 @@
 7.pageContext,request,session,application作用域
 8.转发和重定向
 9.中文乱码问题
+
+> 当前WEB应用启动时，InitServlet被创建，并调用其init方法，读取/WEB-INF/classes/switch.properties下的文件，
+	获取type值赋值给工厂类的type
+  <servlet>
+  	<servlet-name>InitServlet</servlet-name>
+  	<servlet-class>com.important.mvc.servlet.InitServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  这样就可以通过type动态获取实现类，提高了程序的重用性，降低了耦合度
+private CustomerDAO cusDao = CustomerDAOFactory.getInstance().getCustomerDao();

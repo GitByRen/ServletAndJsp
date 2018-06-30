@@ -4,37 +4,35 @@ import java.util.List;
 
 import com.important.mvc.dao.CriteriaCustomer;
 import com.important.mvc.dao.CustomerDAO;
-import com.important.mvc.dao.DAO;
 import com.important.mvc.domain.Customer;
 
-public class CustomerDAOJdbcImpl extends DAO<Customer> implements CustomerDAO {
+public class CustomerDAOXMLImpl implements CustomerDAO{
 
 	@Override
 	public List<Customer> getForListWithCriteriaCustomer(CriteriaCustomer cc) {
-		String sql = "select * from customers where name LIKE ? and address LIKE ? and phone LIKE ?";
-		return getForList(sql, cc.getName(), cc.getAddress(), cc.getPhone());
+		
+		return null;
 	}
-	
+
 	@Override
 	public List<Customer> getAll() {
-		String sql = "select * from customers";
-		return getForList(sql, null);
+		System.out.println("getAll");
+		return null;
 	}
 
 	@Override
 	public void save(Customer customer) {
-
+		
 	}
 
 	@Override
 	public Customer get(Integer id) {
-		return get(null, null);
+		return null;
 	}
 
 	@Override
 	public void delete(Integer id) {
-		String sql = "delete from customers where id = ?";
-		update(sql, id);
+		
 	}
 
 	@Override

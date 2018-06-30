@@ -82,4 +82,13 @@
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>InitServlet</servlet-name>
+  	<servlet-class>com.important.mvc.servlet.InitServlet</servlet-class>
+  	<!-- 随着servlet容器的加载而被加载，为负数则第一次请求时才会创建该servlet，否则数值越小越先被加载 -->
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  
 </web-app>
