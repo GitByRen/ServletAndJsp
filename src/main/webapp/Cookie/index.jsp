@@ -9,7 +9,7 @@
 <body>
 
 	<% 
-		//若可以获取到请求参数 name, 则打印出欢迎信息。把登录信息存储到 Cookie 中，并设置 Cookie 的最大时效为 30S
+		//若可以获取到请求参数 name, 则打印出欢迎信息。把登录信息存储到 Cookie 中，并设置 Cookie 的最大时效为 30s
 		String name = request.getParameter("name");
 		if(name != null && !name.trim().equals("")){
 			Cookie cookie = new Cookie("name", name);

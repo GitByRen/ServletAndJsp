@@ -9,6 +9,7 @@
 <body>
 
 	<!-- 
+		Cookie机制采用的是在客户端保持HTTP状态信息的方案。
 		Cookie机制：①第一次访问不存在Servlet的Cookie，第一次请求到WEB服务器后，服务器会
 		响应一个Cookie给浏览器，后续访问浏览器会携带Cookie到服务器，看是否为一次会话。
 	 -->
@@ -32,6 +33,11 @@
 			Cookie cookie = new Cookie("name", "atguigu");
 			// 设置Cookie的最大时效，以秒为单位，若为0，表示立即删除cookie;若为负数，表示不存储Cookie
 // 			cookie.setMaxAge(30);
+			
+			// Cookie的作用范围：可以作用当前目录和当前目录的子目录，但不能作用于当前目录的上一级目录
+			// 可以通过serPath方法设置Cookie的作用范围,/代表站点根目录
+			cookie.setPath(request.getContextPath());
+			
 			response.addCookie(cookie);
 		}
 	%>

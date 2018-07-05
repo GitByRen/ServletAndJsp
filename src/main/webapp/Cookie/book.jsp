@@ -27,7 +27,7 @@
 				String name = coo.getName();
 				if(name.startsWith("ATGUIGU_BOOK_")){
 					list.add(coo);
-					
+					// 已经存在cookie中的信息和点击的相等
 					if(coo.getValue().equals(book)){
 						temp = coo;
 					}
@@ -39,7 +39,7 @@
 			temp = list.get(0);
 		}
 		
-		if(list.size()>= 5 && temp != null){
+		if(temp != null){
 			temp.setMaxAge(0);
 			response.addCookie(temp);
 		}
