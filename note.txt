@@ -17,3 +17,6 @@
   </servlet>
   这样就可以通过type动态获取实现类，提高了程序的重用性，降低了耦合度
 private CustomerDAO cusDao = CustomerDAOFactory.getInstance().getCustomerDao();
+
+10.cookie机制
+11.session机制,生命周期,绝对路径相对路径,表单的重复提交

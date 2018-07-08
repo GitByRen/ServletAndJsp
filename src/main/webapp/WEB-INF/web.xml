@@ -90,5 +90,13 @@
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  <servlet>
+    <servlet-name>TokenServlet</servlet-name>
+    <servlet-class>com.important.token.TokenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TokenServlet</servlet-name>
+    <url-pattern>/TokenServlet</url-pattern>
+  </servlet-mapping>
   
 </web-app>
