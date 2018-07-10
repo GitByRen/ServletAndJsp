@@ -19,7 +19,7 @@ import javax.servlet.ServletResponse;
 public class HelloServlet implements Servlet {
 
 	/**
-	 * Servlet的声明周期的方法
+	 * Servlet的生命周期的方法
 	 * 1.构造器：只被调用一次，第一次请求servlet时，创建servlet实例，调用构造器，这说明它是单例的
 	 * 2.init方法：只被调用一次，在创建实例后立即被调用，用于初始化当前servlet
 	 * 3.service：被多次调用，每次请求都会调用service方法，实际用于响应请求的
