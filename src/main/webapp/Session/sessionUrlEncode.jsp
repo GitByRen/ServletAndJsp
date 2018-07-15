@@ -9,7 +9,7 @@
 <body>
 
 	<!-- 
-		> response.encodeURL("show.jsp"):URL重写
+		> response.encodeURL("show.jsp"):URL重写，解决禁用Cookie的问题
 		
 		> 绝对路径的问题：在由Servelt转发到JSP页面时，此时浏览器地址栏上显示的是Servelt的路径，而
 		JSP页面的超链接还是相对于该JSP页面的地址，则可能会出现路径混乱的问题
@@ -31,7 +31,7 @@
 	<%
 		Object username = session.getAttribute("username");
 	%>
-
+	
 	<form action="<%=response.encodeURL("show.jsp") %>" method="post">
 		<input type="text" name="username" value="<%=username %>"/>
 		<input type="submit"/>
