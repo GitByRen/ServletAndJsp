@@ -13,7 +13,8 @@
 		3.EL隐含对象：
 			pageScope, requestScope, sessionScope, applicationScope (范围相关)
 			param, paramValues (输入相关)
-			cookie (其他)
+			cookie header...(其他)
+		4.EL的关系运算符
 	 -->
 
 	<form action="el.jsp" method="post">

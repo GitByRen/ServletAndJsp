@@ -16,7 +16,28 @@
 	<br/>
 	time:${applicationScope.time.time }
 	
+	<!-- 以下了解即可 -->
 	<br/>
 	JSessionID:${cookie.JSESSIONID.name } -- ${cookie.JSESSIONID.value }
+	<!-- 其他隐含对象 -->
+	<br/>
+	Accept-Lanuage:${header["Accept-Language"] }
+	<!-- pageContext的初始化参数 -->
+	<br/>
+	initParam:${initParam.loginServlet }
+	
+	<br/>
+	
+	<!-- 重要 -->
+	contextPath:${pageContext.request.contextPath }
+	<br/>
+	sessionId:${pageContext.session.id }
+	<!-- EL的关系运算符 -->
+	<br/>
+	${param.score > 60 ? "及格" : "不及格" }
+	
+	<!-- Empty：可以作用于集合，若该集合不存在或者没有元素，结果都为true -->
+	<br/>
+	empty:${empty requestScope.names }
 </body>
 </html>
