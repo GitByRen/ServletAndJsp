@@ -13,6 +13,7 @@
 		<com.important.mysql>5.1.46</com.important.mysql>
 		<com.important.c3p0>0.9.5.2</com.important.c3p0>
 		<com.important.dbutils>1.7</com.important.dbutils>
+		<com.important.jstl>1.2</com.important.jstl>
 	</properties>
 
 	<dependencies>
@@ -42,6 +43,11 @@
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
 			<version>${com.important.dbutils}</version>
+		</dependency>
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>${com.important.jstl}</version>
 		</dependency>
 	</dependencies>
 </project>
