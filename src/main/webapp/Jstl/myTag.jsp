@@ -17,5 +17,11 @@
 	<!-- 不写value值会报错，count不能用\${}\动态值 -->
 	<i:hello value="${param.values }" count="10"/>
 	
+	<!-- 练习：读取文件输出到页面 -->
+	<i:readerFile src="/WEB-INF/error.jsp"/>
+	
+	<!-- 带标签体的自定义标签 -->
+	<i:testJspFragment>HelloWorld!</i:testJspFragment>
+	
 </body>
 </html>
