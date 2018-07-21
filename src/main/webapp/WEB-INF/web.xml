@@ -109,5 +109,26 @@
 		<servlet-name>TokenServlet</servlet-name>
 		<url-pattern>/TokenServlet</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 注册Filter -->
+	<filter>
+		<filter-name>helloFilter</filter-name>
+		<filter-class>com.important.filter.HelloWorldFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>helloFilter</filter-name>
+		<url-pattern>/Filter/test.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>secondFilter</filter-name>
+		<filter-class>com.important.filter.SecondFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>secondFilter</filter-name>
+		<url-pattern>/Filter/test.jsp</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
 
 </web-app>

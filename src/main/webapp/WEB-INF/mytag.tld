@@ -62,4 +62,23 @@
 		 -->
 		<body-content>scriptless</body-content>
 	</tag>
+	
+	<!-- forEach -->
+	<tag>
+		<name>foreach</name>
+		<tag-class>com.important.tag.TestForeach</tag-class>
+		<body-content>scriptless</body-content>
+		
+		<attribute>
+			<name>items</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
