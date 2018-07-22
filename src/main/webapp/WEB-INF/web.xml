@@ -131,4 +131,41 @@
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
+	<context-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>com.important.filter.encoding.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/Filter/encoding/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 用户信息放入到session中的键的名字 -->
+	<context-param>
+		<param-name>userSessionKey</param-name>		
+		<param-value>USERSESSIONKEY</param-value>
+	</context-param>
+	<!-- 若未登录需重定向的页面 -->
+	<context-param>
+		<param-name>redirectPage</param-name>		
+		<param-value>/Filter/login/login.jsp</param-value>
+	</context-param>
+	<!-- 不需要拦截的URL -->
+	<context-param>
+		<param-name>uncheckedUrls</param-name>		
+		<param-value>/Filter/login/a.jsp,/Filter/login/login.jsp</param-value>
+	</context-param>
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.important.filter.login.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/Filter/login/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>

@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * Filter：对请求和响应进行拦截，Filter随着servelt容器的加载而被加载
+ * Filter：对请求和响应进行拦截，Filter随着servlet容器的加载而被加载
  * FilterChain：
  * ①把请求传给Filter链的下一个Filter,若当前Filter是Filter链的最后一个，则把请求给到目标Servlet(或JSP)
  * ②多个Filter拦截的顺序和<filter-mapping>配置的顺序有关，靠前的先被调用

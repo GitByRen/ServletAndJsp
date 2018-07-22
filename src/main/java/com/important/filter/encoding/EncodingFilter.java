@@ -1,4 +1,4 @@
-package com.important.filter;
+package com.important.filter.encoding;
 
 import java.io.IOException;
 
@@ -7,15 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class NoCacheFilter extends HttpFilter{
+import com.important.filter.HttpFilter;
+
+public class EncodingFilter extends HttpFilter {
+
+	private String encoding;
+
+	@Override
+	protected void init() {
+		encoding = getFilterConfig().getServletContext().getInitParameter("encoding");
+	}
 
 	@Override
 	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// 禁用缓存
-		response.setDateHeader("Expires", -1);
-		response.setHeader("Cache-Control", "no-cache");
-		response.setHeader("Pragma", "no-cache");
+		request.setCharacterEncoding(encoding);
 		chain.doFilter(request, response);
 	}
 
