@@ -168,4 +168,24 @@
 		<url-pattern>/Filter/login/*</url-pattern>
 	</filter-mapping>
 	
+	
+	<!-- 权限 -->
+	<servlet>
+		<servlet-name>authority</servlet-name>
+		<servlet-class>com.important.filter.authority.AuthorityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authority</servlet-name>
+		<url-pattern>/AuthorityServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 过滤敏感字符 -->
+	<filter>
+		<filter-name>wrapper</filter-name>
+		<filter-class>com.important.filter.wrappers.ContentFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>wrapper</filter-name>
+		<url-pattern>/Filter/wrapper/*</url-pattern>
+	</filter-mapping>
 </web-app>
