@@ -14,6 +14,7 @@
 		<com.important.c3p0>0.9.5.2</com.important.c3p0>
 		<com.important.dbutils>1.7</com.important.dbutils>
 		<com.important.jstl>1.2</com.important.jstl>
+		<com.important.file>1.3.3</com.important.file>
 	</properties>
 
 	<dependencies>
@@ -48,6 +49,11 @@
 		    <groupId>jstl</groupId>
 		    <artifactId>jstl</artifactId>
 		    <version>${com.important.jstl}</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>${com.important.file}</version>
 		</dependency>
 	</dependencies>
 </project>
