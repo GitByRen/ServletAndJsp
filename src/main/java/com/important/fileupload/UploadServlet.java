@@ -1,7 +1,10 @@
 package com.important.fileupload;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,27 +36,52 @@ public class UploadServlet extends HttpServlet {
 		// Create a factory for disk-based file items
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 
-		// Set factory constraints
+		// 设置内存中最多可以存放的上传文件的大小，若超出则把文件写到一个临时文件夹,以byte为单位
 		factory.setSizeThreshold(1024 * 500);
-		File tempDirectory = new File("D:\\tempDirectory");
+		File tempDirectory = new File("E:\\tempDirectory");
 		factory.setRepository(tempDirectory);
 
 		// Create a new file upload handler
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// Set overall request size constraint
+		// 设置上传文件的总的大小，也可以设置单个文件的大小.
 		upload.setSizeMax(1024 * 1024 * 5);
 
 		// Parse the request
 		try {
 			List<FileItem> items = upload.parseRequest(request);
+			// 2.遍历items：若是一个一般的表单域，打印信息
+			for (FileItem fileItem : items) {
+				if (fileItem.isFormField()) {
+					String name = fileItem.getFieldName();
+					String value = fileItem.getString();
+					System.out.println(name + " " + value);
+				} else {
+					// 若是文件域，则把文件保存
+					String fieldName = fileItem.getFieldName();
+					String fileName = fileItem.getName();
+					String contentType = fileItem.getContentType();
+					boolean inMemory = fileItem.isInMemory();
+					long size = fileItem.getSize();
+					System.out.println(fieldName + " " + fileName + " " + contentType + " " + inMemory + " " + size);
+					
+					InputStream inputStream = fileItem.getInputStream();
+					fileName = "E:\\dir" + fileName;
+					OutputStream out = new FileOutputStream(fileName);
+					
+					byte[] buf = new byte[1024];
+					int len = 0;
+					while((len = inputStream.read(buf)) != -1) {
+						out.write(buf, 0, len);
+					}
+					out.close();
+					inputStream.close();
+				}
+			}
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}
 
-		// 2.遍历items：若是一个一般的表单域，打印信息
-
-		// 若是文件域，则把文件保存
 	}
 
 }

@@ -197,4 +197,14 @@
 	<listener>
 		<listener-class>com.important.listener.TestAttributeListener</listener-class>
 	</listener>
+	
+	<!-- 文件上传 -->
+	<servlet>
+		<servlet-name>fileupload</servlet-name>
+		<servlet-class>com.important.fileupload.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fileupload</servlet-name>
+		<url-pattern>/uploadServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
