@@ -12,16 +12,35 @@
 		// 1.获取#addFile，添加点击事件
 		var i = 2;
 		$("#addFile").click(function(){
-			$(this).parent().parent().before("<tr><td>File"
+			// 2.生成多个File1和Desc1
+			$(this).parent().parent().before("<tr class='file'><td>File"
 					+ i + ":</td><td><input type='file' name='file"
-					+ i + "'/></td></tr><tr><td>Desc"
+					+ i + "'/></td></tr><tr class='desc'><td>Desc"
 					+ i + ":</td><td><input type='text' name='desc"
-					+ i + "'/></td></tr>");
+					+ i + "'/><button type='button' id='delete"
+					+ i + "'>删除</button></td></tr>");
 			i++;
+			
+			// 获取删除按钮
+			$("#delete"+(i-2)).click(function(){
+				// 删除
+				var $tr = $(this).parent().parent("tr");
+				$tr.prev("tr").remove();
+				$tr.remove();
+				// 重新排序
+				$(".file").each(function(index){
+					var n = index + 2;
+					$(this).find("td:first").text("File" + n);
+					$(this).find("td:last input").attr("name","file" + n);
+				});
+				
+				$(".desc").each(function(index){
+					var n = index + 2;
+					$(this).find("td:first").text("Desc" + n);
+					$(this).find("td:last input").attr("name","desc" + n);
+				});
+			});
 		});
-		
-		// 2.生成多个File1和Desc1
-		
 		
 	});
 </script>
@@ -32,15 +51,15 @@
 	<br>
 	<br>
 
-	<form action="${pageContext.request.contextPath }/fileuploadservlet" method="post"
+	<form action="${pageContext.request.contextPath }/fileuploadServlet" method="post"
 		enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>File1:</td>
+				<td>File1</td>
 				<td><input type="file" name="file1"/></td>
 			</tr>
 			<tr>
-				<td>Desc1:</td>
+				<td>Desc1</td>
 				<td><input type="text" name="desc1"/></td>
 			</tr>
 			<tr>

@@ -207,4 +207,17 @@
 		<servlet-name>fileupload</servlet-name>
 		<url-pattern>/uploadServlet</url-pattern>
 	</servlet-mapping>
+	
+	<!-- fileuploadApp -->
+	<listener>
+		<listener-class>com.important.fileupload.FileUploadAppListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>fileuploadServlet</servlet-name>
+		<servlet-class>com.important.fileupload.FileUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fileuploadServlet</servlet-name>
+		<url-pattern>/fileuploadServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
