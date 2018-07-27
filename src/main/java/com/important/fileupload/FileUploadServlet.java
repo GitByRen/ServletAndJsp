@@ -49,14 +49,24 @@ public class FileUploadServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * 文件上传
+	 * @param uploadFiles
+	 */
 	private void upload(Map<String, FileItem> uploadFiles) {
-
+	    
 	}
 
 	private void validateExtName(List<FileUploadBean> beans) {
-
+	    
 	}
 
+	/**
+	 * 利用传入的FileItem集合，构建FileUploadBean的集合
+	 * @param items
+	 * @param uploadFiles
+	 * @return
+	 */
 	private List<FileUploadBean> buildUploadBeans(List<FileItem> items, Map<String, FileItem> uploadFiles) {
 		List<FileUploadBean> beans = new ArrayList<>();
 
@@ -89,16 +99,22 @@ public class FileUploadServlet extends HttpServlet {
 	}
 
 	/**
-	 * 得到文件的路径
+	 * 得到随机的文件的路径和文件名
 	 * @param fileName
 	 * @return
 	 */
 	private String getFilePath(String fileName) {
 		String extName = fileName.substring(fileName.lastIndexOf("."));
-		String filePath = getServletContext().getRealPath(FILE_PATH) + "\\" + System.currentTimeMillis() + extName;
+		int randomNum = (int) (Math.random()*100000);
+		String filePath = getServletContext().getRealPath(FILE_PATH) + "\\" + System.currentTimeMillis() + randomNum + extName;
 		return filePath;
 	}
 
+	/**
+	 * 构建了ServletFileUpload对象，从配置文件读取部分属性，用户设置约束
+	 * 
+	 * @return
+	 */
 	private ServletFileUpload getServletFileUpload() {
 		FileUploadUtils instance = FileUploadUtils.getInstance();
 		String exts = instance.getProperty("exts");

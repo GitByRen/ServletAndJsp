@@ -49,6 +49,7 @@ public class UploadServlet extends HttpServlet {
 
 		// Parse the request
 		try {
+		    // commons-fileupload可以解析请求，得到一个FileItem对象组成的List
 			List<FileItem> items = upload.parseRequest(request);
 			// 2.遍历items：若是一个一般的表单域，打印信息
 			for (FileItem fileItem : items) {
