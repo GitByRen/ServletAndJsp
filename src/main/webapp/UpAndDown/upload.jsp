@@ -22,7 +22,7 @@
 			i++;
 			
 			// 获取删除按钮
-			$("#delete"+(i-2)).click(function(){
+			$("#delete"+(i-1)).click(function(){
 				// 删除
 				var $tr = $(this).parent().parent("tr");
 				$tr.prev("tr").remove();
@@ -39,6 +39,8 @@
 					$(this).find("td:first").text("Desc" + n);
 					$(this).find("td:last input").attr("name","desc" + n);
 				});
+				
+				i--;
 			});
 		});
 		

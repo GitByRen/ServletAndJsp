@@ -1,11 +1,16 @@
 package com.important.fileupload;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +28,13 @@ public class FileUploadServlet extends HttpServlet {
 
 	private static final String FILE_PATH = "/WEB-INF/files";
 
+	private FileUploadUtils instance = FileUploadUtils.getInstance();
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		ServletFileUpload upload = getServletFileUpload();
+		String path = "";
 
 		try {
 			// 把需要上传的FileItem都放入到该Map中
@@ -40,29 +49,96 @@ public class FileUploadServlet extends HttpServlet {
 			upload(uploadFiles);
 			// 5.保存信息到数据库
 			saveBeans(beans);
+			// 6.删除临时文件
+			deleteTemp(items);
+
+			path = "/UpAndDown/down.jsp";
 		} catch (FileUploadException e) {
+			request.setAttribute("msg", e.getMessage());
+			path = "/UpAndDown/upload.jsp";
 			e.printStackTrace();
+		}
+
+		request.getRequestDispatcher(path).forward(request, response);
+	}
+
+	/**
+	 * 删除缓存文件
+	 * 
+	 * @param items
+	 */
+	private void deleteTemp(List<FileItem> items) {
+		for (FileItem fileItem : items) {
+			fileItem.delete();
 		}
 	}
 
+	/**
+	 * 保存至数据库
+	 * 
+	 * @param beans
+	 */
 	private void saveBeans(List<FileUploadBean> beans) {
 
 	}
 
 	/**
-	 * 文件上传
+	 * 文件上传准备
+	 * 
 	 * @param uploadFiles
+	 * @throws IOException
 	 */
-	private void upload(Map<String, FileItem> uploadFiles) {
-	    
+	private void upload(Map<String, FileItem> uploadFiles) throws IOException {
+		for (Entry<String, FileItem> maps : uploadFiles.entrySet()) {
+			String path = maps.getKey();
+			FileItem item = maps.getValue();
+
+			upload(path, item.getInputStream());
+		}
 	}
 
-	private void validateExtName(List<FileUploadBean> beans) {
-	    
+	/**
+	 * 文件上传
+	 * 
+	 * @param path
+	 * @param inputStream
+	 * @throws IOException
+	 */
+	private void upload(String path, InputStream inputStream) throws IOException {
+		OutputStream os = new FileOutputStream(path);
+
+		int len = 0;
+		byte[] buffer = new byte[1024];
+		while ((len = inputStream.read(buffer)) != -1) {
+			os.write(buffer, 0, len);
+		}
+
+		os.close();
+		inputStream.close();
+	}
+
+	/**
+	 * 校验扩展名是否合法
+	 * 
+	 * @param beans
+	 * @throws FileUploadException
+	 */
+	private void validateExtName(List<FileUploadBean> beans) throws FileUploadException {
+		String exts = instance.getProperty("exts");
+		List<String> extList = Arrays.asList(exts.split(","));
+
+		for (FileUploadBean fileUploadBean : beans) {
+			String fileName = fileUploadBean.getFileName();
+			String extName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			if (!extList.contains(extName)) {
+				throw new FileUploadException(fileName + "文件的扩展名不合法!");
+			}
+		}
 	}
 
 	/**
 	 * 利用传入的FileItem集合，构建FileUploadBean的集合
+	 * 
 	 * @param items
 	 * @param uploadFiles
 	 * @return
@@ -100,13 +176,15 @@ public class FileUploadServlet extends HttpServlet {
 
 	/**
 	 * 得到随机的文件的路径和文件名
+	 * 
 	 * @param fileName
 	 * @return
 	 */
 	private String getFilePath(String fileName) {
 		String extName = fileName.substring(fileName.lastIndexOf("."));
-		int randomNum = (int) (Math.random()*100000);
-		String filePath = getServletContext().getRealPath(FILE_PATH) + "\\" + System.currentTimeMillis() + randomNum + extName;
+		int randomNum = (int) (Math.random() * 100000);
+		String filePath = getServletContext().getRealPath(FILE_PATH) + "\\" + System.currentTimeMillis() + randomNum
+				+ extName;
 		return filePath;
 	}
 
@@ -116,13 +194,11 @@ public class FileUploadServlet extends HttpServlet {
 	 * @return
 	 */
 	private ServletFileUpload getServletFileUpload() {
-		FileUploadUtils instance = FileUploadUtils.getInstance();
-		String exts = instance.getProperty("exts");
 		String fileMaxSize = instance.getProperty("file.max.size");
 		String totalFileMaxSize = instance.getProperty("total.file.max.size");
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setSizeThreshold(1024 * 500);
+		factory.setSizeThreshold(1024);
 		File tempDirectory = new File("E:\\tempDirectory");
 		factory.setRepository(tempDirectory);
 		ServletFileUpload upload = new ServletFileUpload(factory);
