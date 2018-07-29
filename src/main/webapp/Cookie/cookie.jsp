@@ -35,7 +35,7 @@
 // 			cookie.setMaxAge(30);
 			
 			// Cookie的作用范围：可以作用当前目录和当前目录的子目录，但不能作用于当前目录的上一级目录
-			// 可以通过serPath方法设置Cookie的作用范围,/代表站点根目录
+			// 可以通过setPath方法设置Cookie的作用范围,/代表站点根目录
 			cookie.setPath(request.getContextPath());
 			
 			response.addCookie(cookie);

@@ -20,3 +20,7 @@ private CustomerDAO cusDao = CustomerDAOFactory.getInstance().getCustomerDao();
 
 10.cookie机制
 11.session机制,生命周期,绝对路径相对路径,表单的重复提交
+12.Filter
+13.Listener
+14.文件上传下载
+15.国际化

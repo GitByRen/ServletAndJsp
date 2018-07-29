@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSessionBindingListener;
 import javax.servlet.http.HttpSessionEvent;
 
 /**
- * HttpSessionBindingListener:监听现了该接口的Java类绑定session的listener,这个不需要在web.xml文件中进行配置
+ * HttpSessionBindingListener:监听实现了该接口的Java类绑定session的listener,这个不需要在web.xml文件中进行配置
  * HttpSessionActivationListener:监听实现了该接口和Serializable接口的Java类的对象随session钝化和活化的事件,这个不需要在web.xml文件中进行配置
  * > 活化：读取session对象 > 钝化：写入session对象
  */
