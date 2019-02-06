@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
 <body>
 
 	<form action="loginServlet" method="post">
@@ -16,9 +17,20 @@
 			type="checkbox" name="interesting" value="shopping" />Shopping <input
 			type="checkbox" name="interesting" value="sport" />Sport <input
 			type="checkbox" name="interesting" value="tv" />TV <input
-			type="submit" value="Submit" />
+			type="submit" value="Submit" id="submitButton"/>
 
 	</form>
 
+	<!-- 测试forward的路径，结果为初次发出请求的地址 -->
+	<a href="forwardServlet">走你</a>
 </body>
+<script type="text/javascript">
+	$(function(){
+		// 防止表单重复提交
+		$("#submitButton").click(function(){
+			$(this).attr("disabled", true);
+			$("form").submit();
+		});
+	});
+</script>
 </html>
